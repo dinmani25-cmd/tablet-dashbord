@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="D.E.V.I.L app icon">
+  <rect width="180" height="180" rx="40" fill="#050914"/>
+  <circle cx="90" cy="90" r="62" fill="none" stroke="#52e4ff" stroke-width="6"/>
+  <circle cx="90" cy="90" r="38" fill="none" stroke="#78f0b2" stroke-width="4"/>
+  <path d="M58 55h36c21 0 36 14 36 35s-15 35-36 35H58V55Zm25 22v26h10c8 0 14-5 14-13s-6-13-14-13H83Z" fill="#eef7ff"/>
+</svg>

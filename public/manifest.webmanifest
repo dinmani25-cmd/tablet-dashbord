@@ -1,0 +1,19 @@
+{
+  "name": "D.E.V.I.L Mission Control",
+  "short_name": "D.E.V.I.L",
+  "description": "Digital Environment Visualization & Intelligent Launcher mission dashboard.",
+  "start_url": "/tablet-dashbord/",
+  "scope": "/tablet-dashbord/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#050914",
+  "theme_color": "#050914",
+  "icons": [
+    {
+      "src": "/tablet-dashbord/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

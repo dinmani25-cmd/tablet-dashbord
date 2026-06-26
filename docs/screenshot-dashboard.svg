@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800" role="img" aria-label="D.E.V.I.L Mission Control dashboard screenshot">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#050914"/><stop offset="0.55" stop-color="#081826"/><stop offset="1" stop-color="#0d1426"/></linearGradient>
+    <linearGradient id="accent" x1="0" x2="1"><stop stop-color="#52e4ff"/><stop offset="1" stop-color="#78f0b2"/></linearGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="28"/></filter>
+  </defs>
+  <rect width="1280" height="800" fill="url(#bg)"/>
+  <circle cx="245" cy="120" r="210" fill="#52e4ff" opacity="0.14" filter="url(#blur)"/>
+  <circle cx="1010" cy="140" r="180" fill="#78f0b2" opacity="0.11" filter="url(#blur)"/>
+  <g opacity="0.15" stroke="#eef7ff"><path d="M0 90h1280M0 180h1280M0 270h1280M0 360h1280M0 450h1280M0 540h1280M0 630h1280M0 720h1280M100 0v800M220 0v800M340 0v800M460 0v800M580 0v800M700 0v800M820 0v800M940 0v800M1060 0v800M1180 0v800"/></g>
+  <text x="80" y="92" fill="#eef7ff" font-size="34" font-family="Arial" font-weight="700">D.E.V.I.L Mission Control</text>
+  <text x="80" y="130" fill="#8fa8bc" font-size="18" font-family="Arial">Digital Environment Visualization &amp; Intelligent Launcher</text>
+  <rect x="80" y="168" width="1120" height="108" rx="22" fill="#0c172c" opacity="0.78" stroke="#52e4ff" stroke-opacity="0.2"/>
+  <text x="112" y="230" fill="#52e4ff" font-size="54" font-family="Arial" font-weight="800">98.7%</text>
+  <text x="352" y="230" fill="#ffc86b" font-size="54" font-family="Arial" font-weight="800">12</text>
+  <text x="572" y="230" fill="#78f0b2" font-size="54" font-family="Arial" font-weight="800">8.4Gb/s</text>
+  <text x="885" y="230" fill="#ff6f91" font-size="54" font-family="Arial" font-weight="800">03</text>
+  <rect x="80" y="310" width="680" height="410" rx="28" fill="#0c172c" opacity="0.72" stroke="#52e4ff" stroke-opacity="0.25"/>
+  <circle cx="420" cy="500" r="160" fill="none" stroke="#52e4ff" stroke-opacity="0.42" stroke-width="2"/>
+  <circle cx="420" cy="500" r="104" fill="none" stroke="#78f0b2" stroke-opacity="0.5" stroke-width="2"/>
+  <circle cx="420" cy="500" r="64" fill="url(#accent)"/>
+  <text x="374" y="509" fill="#06101c" font-size="22" font-family="Arial" font-weight="900">D.E.V.I.L</text>
+  <rect x="794" y="310" width="406" height="185" rx="28" fill="#0c172c" opacity="0.72" stroke="#52e4ff" stroke-opacity="0.25"/>
+  <g fill="#52e4ff"><rect x="835" y="430" width="18" height="34" rx="9"/><rect x="869" y="392" width="18" height="72" rx="9"/><rect x="903" y="410" width="18" height="54" rx="9"/><rect x="937" y="360" width="18" height="104" rx="9"/><rect x="971" y="385" width="18" height="79" rx="9"/><rect x="1005" y="342" width="18" height="122" rx="9"/><rect x="1039" y="372" width="18" height="92" rx="9"/><rect x="1073" y="326" width="18" height="138" rx="9"/><rect x="1107" y="350" width="18" height="114" rx="9"/></g>
+  <rect x="794" y="525" width="406" height="195" rx="28" fill="#0c172c" opacity="0.72" stroke="#52e4ff" stroke-opacity="0.25"/>
+  <text x="830" y="575" fill="#eef7ff" font-size="24" font-family="Arial" font-weight="700">Active Missions</text>
+  <rect x="830" y="604" width="315" height="10" rx="5" fill="#1e3146"/><rect x="830" y="604" width="245" height="10" rx="5" fill="url(#accent)"/>
+  <rect x="830" y="650" width="315" height="10" rx="5" fill="#1e3146"/><rect x="830" y="650" width="138" height="10" rx="5" fill="url(#accent)"/>
+  <rect x="830" y="696" width="315" height="10" rx="5" fill="#1e3146"/><rect x="830" y="696" width="287" height="10" rx="5" fill="url(#accent)"/>
+</svg>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="D.E.V.I.L Mission Control icon">
+  <rect width="512" height="512" rx="112" fill="#050914"/>
+  <circle cx="256" cy="256" r="178" fill="none" stroke="#52e4ff" stroke-width="12" opacity="0.7"/>
+  <circle cx="256" cy="256" r="118" fill="none" stroke="#78f0b2" stroke-width="8" opacity="0.75"/>
+  <path d="M164 156h102c58 0 98 40 98 100s-40 100-98 100H164V156Zm72 60v80h26c26 0 44-16 44-40s-18-40-44-40h-26Z" fill="#eef7ff"/>
+  <path d="M392 108 350 42M120 404l42 66M404 392l66 42M42 162l66 42" stroke="#52e4ff" stroke-width="14" stroke-linecap="round" opacity="0.7"/>
+</svg>
