@@ -14,7 +14,16 @@ type Task = {
   done: boolean;
 };
 
-const navItems = ['Home', 'Weather', 'Calendar', 'Photos', 'Notes', 'Tasks', 'Music', 'Links'];
+const navItems = [
+  { label: 'Home', target: 'overview' },
+  { label: 'Weather', target: 'weather' },
+  { label: 'Calendar', target: 'calendar' },
+  { label: 'Photos', target: 'photos' },
+  { label: 'Notes', target: 'notes' },
+  { label: 'Tasks', target: 'tasks' },
+  { label: 'Music', target: 'music' },
+  { label: 'Links', target: 'links' }
+];
 
 const gauges: Gauge[] = [
   { label: 'Core Sync', value: 92, detail: '12 modules online', tone: 'cyan' },
@@ -63,7 +72,7 @@ function GaugeCard({ gauge }: { gauge: Gauge }) {
 
 function WeatherPanel() {
   return (
-    <section className="glass-card weather-panel" aria-labelledby="weather-title">
+    <section className="glass-card weather-panel" id="weather" aria-labelledby="weather-title">
       <div className="card-title-row">
         <div>
           <span className="eyebrow">Atmosphere</span>
@@ -89,7 +98,7 @@ function WeatherPanel() {
 
 function CalendarPanel() {
   return (
-    <section className="glass-card calendar-panel" aria-labelledby="calendar-title">
+    <section className="glass-card calendar-panel" id="calendar" aria-labelledby="calendar-title">
       <div className="card-title-row">
         <div>
           <span className="eyebrow">Schedule</span>
@@ -115,7 +124,7 @@ function CalendarPanel() {
 
 function PhotographyHub() {
   return (
-    <section className="glass-card photo-panel" aria-labelledby="photo-title">
+    <section className="glass-card photo-panel" id="photos" aria-labelledby="photo-title">
       <div className="card-title-row">
         <div>
           <span className="eyebrow">Creative</span>
@@ -136,7 +145,7 @@ function PhotographyHub() {
 
 function NotesPanel() {
   return (
-    <section className="glass-card notes-panel" aria-labelledby="notes-title">
+    <section className="glass-card notes-panel" id="notes" aria-labelledby="notes-title">
       <div className="card-title-row">
         <div>
           <span className="eyebrow">Memory</span>
@@ -158,7 +167,7 @@ function NotesPanel() {
 
 function TodoPanel() {
   return (
-    <section className="glass-card todo-panel" aria-labelledby="todo-title">
+    <section className="glass-card todo-panel" id="tasks" aria-labelledby="todo-title">
       <div className="card-title-row">
         <div>
           <span className="eyebrow">Execution</span>
@@ -183,7 +192,7 @@ function TodoPanel() {
 
 function MusicPlayer() {
   return (
-    <section className="glass-card music-panel" aria-labelledby="music-title">
+    <section className="glass-card music-panel" id="music" aria-labelledby="music-title">
       <div className="album-art">
         <span />
       </div>
@@ -204,7 +213,7 @@ function MusicPlayer() {
 
 function QuickLinks() {
   return (
-    <section className="glass-card links-panel" aria-labelledby="links-title">
+    <section className="glass-card links-panel" id="links" aria-labelledby="links-title">
       <div className="card-title-row">
         <div>
           <span className="eyebrow">Launcher</span>
@@ -239,9 +248,9 @@ export function App() {
         <a className="rail-brand" href="#overview" aria-label="D.E.V.I.L Mission Control home">D</a>
         <nav>
           {navItems.map((item) => (
-            <a className={item === 'Home' ? 'active' : ''} href={`#${item.toLowerCase()}`} key={item}>
-              <span>{item.slice(0, 2)}</span>
-              <small>{item}</small>
+            <a className={item.label === 'Home' ? 'active' : ''} href={`#${item.target}`} key={item.label}>
+              <span>{item.label.slice(0, 2)}</span>
+              <small>{item.label}</small>
             </a>
           ))}
         </nav>
