@@ -8,9 +8,10 @@ D.E.V.I.L Mission Control is a production-ready React, TypeScript, and Vite prog
 
 ## Highlights
 
-- Futuristic glassmorphism interface with a dark command-center visual system.
-- Tablet-first layout that also adapts cleanly to mobile and desktop screens.
-- Animated mission topology, live telemetry bars, status cards, and mission progress widgets.
+- Approved futuristic tablet UI with a persistent left navigation rail and dense command surface.
+- Glassmorphism cards, dark theme, luminous borders, animated circular gauges, and ambient motion.
+- Weather, calendar, photography hub, notes, to-do list, music player, and quick links widgets.
+- Tablet-first responsive layout that adapts cleanly to mobile and desktop screens.
 - Progressive Web App setup with manifest metadata, installable icon assets, and a cache-first service worker.
 - GitHub Pages deployment workflow configured for the repository path `/tablet-dashbord/`.
 - Strict TypeScript, ESLint, and Vite production build scripts.
@@ -20,7 +21,7 @@ D.E.V.I.L Mission Control is a production-ready React, TypeScript, and Vite prog
 - React 19
 - TypeScript 5
 - Vite 7
-- CSS modules-style component organization with plain CSS
+- Component-oriented plain CSS
 - GitHub Actions and GitHub Pages
 
 ## Getting Started
@@ -61,7 +62,7 @@ npm run preview
 
 The app is configured for GitHub Pages with Vite's `base` set to `/tablet-dashbord/`. Pushes to `main` trigger `.github/workflows/pages.yml`, which builds the app and deploys the `dist` artifact using GitHub's official Pages action.
 
-After the first workflow run, the live app should be available at:
+After the workflow run, the live app should be available at:
 
 ```text
 https://dinmani25-cmd.github.io/tablet-dashbord/
