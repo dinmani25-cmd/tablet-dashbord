@@ -1,97 +1,226 @@
-import { useMemo, useState, type CSSProperties } from 'react';
+import { useMemo, type CSSProperties } from 'react';
 import './App.css';
 
-type Signal = {
+type Gauge = {
   label: string;
-  value: string;
-  status: 'stable' | 'watch' | 'critical';
+  value: number;
+  detail: string;
+  tone: 'cyan' | 'green' | 'amber' | 'violet';
 };
 
-type Mission = {
-  name: string;
-  region: string;
-  progress: number;
-  owner: string;
+type Task = {
+  title: string;
+  meta: string;
+  done: boolean;
 };
 
-const signals: Signal[] = [
-  { label: 'Core Sync', value: '98.7%', status: 'stable' },
-  { label: 'Threat Grid', value: '12', status: 'watch' },
-  { label: 'Uplink', value: '8.4Gb/s', status: 'stable' },
-  { label: 'Containment', value: '03', status: 'critical' }
+const navItems = ['Home', 'Weather', 'Calendar', 'Photos', 'Notes', 'Tasks', 'Music', 'Links'];
+
+const gauges: Gauge[] = [
+  { label: 'Core Sync', value: 92, detail: '12 modules online', tone: 'cyan' },
+  { label: 'Energy', value: 76, detail: 'Tablet dock stable', tone: 'green' },
+  { label: 'Focus', value: 64, detail: '3 priority threads', tone: 'amber' },
+  { label: 'Signal', value: 88, detail: 'Encrypted uplink', tone: 'violet' }
 ];
 
-const missions: Mission[] = [
-  { name: 'Obsidian Relay', region: 'North Atlantic', progress: 78, owner: 'Ops Alpha' },
-  { name: 'Neon Perimeter', region: 'Sector 7', progress: 44, owner: 'Sentinel' },
-  { name: 'Aurora Watch', region: 'Low Orbit', progress: 91, owner: 'Skyline' }
+const calendarDays = [
+  { day: 'Mon', date: '22' },
+  { day: 'Tue', date: '23' },
+  { day: 'Wed', date: '24' },
+  { day: 'Thu', date: '25' },
+  { day: 'Fri', date: '26', active: true },
+  { day: 'Sat', date: '27' },
+  { day: 'Sun', date: '28' }
 ];
 
-const telemetry = [64, 72, 58, 82, 69, 88, 76, 94, 83, 97, 89, 100];
+const tasks: Task[] = [
+  { title: 'Calibrate weather feed', meta: '08:40 command sweep', done: true },
+  { title: 'Review photo capture queue', meta: '12 assets waiting', done: false },
+  { title: 'Publish Pages deployment', meta: 'GitHub Actions source', done: false },
+  { title: 'Archive mission notes', meta: 'Notebook alpha', done: false }
+];
 
-function statusText(status: Signal['status']) {
-  return status === 'stable' ? 'Nominal' : status === 'watch' ? 'Watch' : 'Priority';
+const quickLinks = ['Launch', 'Files', 'Maps', 'Studio', 'Vault', 'Control'];
+const photos = ['Aperture', 'Night Grid', 'Command Lens'];
+
+function GaugeCard({ gauge }: { gauge: Gauge }) {
+  return (
+    <article className={`glass-card gauge-card ${gauge.tone}`}>
+      <div
+        className="gauge-ring"
+        style={{ '--value': `${gauge.value * 3.6}deg` } as CSSProperties}
+        aria-label={`${gauge.label} ${gauge.value}%`}
+      >
+        <span>{gauge.value}%</span>
+      </div>
+      <div>
+        <h3>{gauge.label}</h3>
+        <p>{gauge.detail}</p>
+      </div>
+    </article>
+  );
 }
 
-function OrbitalMap() {
+function WeatherPanel() {
   return (
-    <section className="orbital-map panel" aria-label="Mission topology">
-      <div className="map-grid" />
-      <div className="orbit orbit-one" />
-      <div className="orbit orbit-two" />
-      <div className="core-node">
-        <span>D.E.V.I.L</span>
+    <section className="glass-card weather-panel" aria-labelledby="weather-title">
+      <div className="card-title-row">
+        <div>
+          <span className="eyebrow">Atmosphere</span>
+          <h2 id="weather-title">Weather</h2>
+        </div>
+        <span className="status-chip">Live</span>
       </div>
-      <span className="satellite sat-one" />
-      <span className="satellite sat-two" />
-      <span className="satellite sat-three" />
-      <div className="map-readout">
-        <strong>Live Theatre</strong>
-        <span>Digital Environment Visualization & Intelligent Launcher</span>
+      <div className="weather-core">
+        <div className="weather-orb" />
+        <div>
+          <strong>28 C</strong>
+          <span>Haze with clean signal</span>
+        </div>
+      </div>
+      <div className="weather-stats">
+        <span>Wind 11 km/h</span>
+        <span>Humidity 62%</span>
+        <span>UV 4.2</span>
       </div>
     </section>
   );
 }
 
-function TelemetryGraph() {
+function CalendarPanel() {
   return (
-    <section className="panel telemetry-panel" aria-label="Telemetry trend">
-      <div className="panel-heading">
+    <section className="glass-card calendar-panel" aria-labelledby="calendar-title">
+      <div className="card-title-row">
         <div>
-          <span className="eyebrow">Telemetry</span>
-          <h2>Neural Load</h2>
+          <span className="eyebrow">Schedule</span>
+          <h2 id="calendar-title">Calendar</h2>
         </div>
-        <span className="pulse-pill">Live</span>
+        <span className="status-chip muted">June</span>
       </div>
-      <div className="bars">
-        {telemetry.map((value, index) => (
-          <span key={index} style={{ '--bar-height': `${value}%` } as CSSProperties} />
+      <div className="day-strip">
+        {calendarDays.map((item) => (
+          <span className={item.active ? 'active' : ''} key={item.date}>
+            <small>{item.day}</small>
+            <strong>{item.date}</strong>
+          </span>
+        ))}
+      </div>
+      <div className="event-card">
+        <span>19:30</span>
+        <strong>Mission Control Sync</strong>
+      </div>
+    </section>
+  );
+}
+
+function PhotographyHub() {
+  return (
+    <section className="glass-card photo-panel" aria-labelledby="photo-title">
+      <div className="card-title-row">
+        <div>
+          <span className="eyebrow">Creative</span>
+          <h2 id="photo-title">Photography Hub</h2>
+        </div>
+        <button type="button">Import</button>
+      </div>
+      <div className="photo-grid">
+        {photos.map((photo, index) => (
+          <article key={photo} className={`photo-tile tile-${index + 1}`}>
+            <span>{photo}</span>
+          </article>
         ))}
       </div>
     </section>
   );
 }
 
-function MissionCard({ mission }: { mission: Mission }) {
+function NotesPanel() {
   return (
-    <article className="mission-card">
-      <div>
-        <h3>{mission.name}</h3>
-        <span>{mission.region}</span>
+    <section className="glass-card notes-panel" aria-labelledby="notes-title">
+      <div className="card-title-row">
+        <div>
+          <span className="eyebrow">Memory</span>
+          <h2 id="notes-title">Notes</h2>
+        </div>
+        <span className="status-chip muted">4 pins</span>
       </div>
-      <div className="progress-track" aria-label={`${mission.progress}% complete`}>
-        <span style={{ width: `${mission.progress}%` }} />
+      <p>
+        Keep D.E.V.I.L in command mode: review telemetry, ship the dashboard, then verify Pages.
+      </p>
+      <div className="note-tags">
+        <span>Design</span>
+        <span>PWA</span>
+        <span>Deploy</span>
       </div>
-      <footer>
-        <span>{mission.owner}</span>
-        <strong>{mission.progress}%</strong>
-      </footer>
-    </article>
+    </section>
+  );
+}
+
+function TodoPanel() {
+  return (
+    <section className="glass-card todo-panel" aria-labelledby="todo-title">
+      <div className="card-title-row">
+        <div>
+          <span className="eyebrow">Execution</span>
+          <h2 id="todo-title">To-Do List</h2>
+        </div>
+        <span className="status-chip">3 open</span>
+      </div>
+      <div className="task-list">
+        {tasks.map((task) => (
+          <label className="task-item" key={task.title}>
+            <input type="checkbox" checked={task.done} readOnly />
+            <span>
+              <strong>{task.title}</strong>
+              <small>{task.meta}</small>
+            </span>
+          </label>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function MusicPlayer() {
+  return (
+    <section className="glass-card music-panel" aria-labelledby="music-title">
+      <div className="album-art">
+        <span />
+      </div>
+      <div className="track-copy">
+        <span className="eyebrow">Now Playing</span>
+        <h2 id="music-title">Synthetic Horizon</h2>
+        <p>Mission Control Mix</p>
+      </div>
+      <div className="player-controls" aria-label="Music controls">
+        <button type="button">Prev</button>
+        <button type="button" className="primary-control">Play</button>
+        <button type="button">Next</button>
+      </div>
+      <div className="track-progress"><span /></div>
+    </section>
+  );
+}
+
+function QuickLinks() {
+  return (
+    <section className="glass-card links-panel" aria-labelledby="links-title">
+      <div className="card-title-row">
+        <div>
+          <span className="eyebrow">Launcher</span>
+          <h2 id="links-title">Quick Links</h2>
+        </div>
+      </div>
+      <div className="quick-grid">
+        {quickLinks.map((link) => (
+          <button type="button" key={link}>{link}</button>
+        ))}
+      </div>
+    </section>
   );
 }
 
 export function App() {
-  const [mode, setMode] = useState<'command' | 'stealth' | 'analysis'>('command');
   const timestamp = useMemo(
     () =>
       new Intl.DateTimeFormat('en-US', {
@@ -105,78 +234,46 @@ export function App() {
   );
 
   return (
-    <main className={`shell mode-${mode}`}>
-      <header className="topbar">
-        <a className="brand" href="#overview" aria-label="D.E.V.I.L Mission Control home">
-          <span className="brand-mark">D</span>
-          <span>
-            <strong>D.E.V.I.L</strong>
-            <small>Mission Control</small>
-          </span>
-        </a>
-        <nav className="mode-switch" aria-label="Operating mode">
-          {(['command', 'stealth', 'analysis'] as const).map((option) => (
-            <button
-              key={option}
-              className={mode === option ? 'active' : ''}
-              type="button"
-              onClick={() => setMode(option)}
-            >
-              {option}
-            </button>
+    <main className="tablet-shell">
+      <aside className="nav-rail" aria-label="D.E.V.I.L navigation">
+        <a className="rail-brand" href="#overview" aria-label="D.E.V.I.L Mission Control home">D</a>
+        <nav>
+          {navItems.map((item) => (
+            <a className={item === 'Home' ? 'active' : ''} href={`#${item.toLowerCase()}`} key={item}>
+              <span>{item.slice(0, 2)}</span>
+              <small>{item}</small>
+            </a>
           ))}
         </nav>
-        <div className="clock" aria-label="System time">
-          {timestamp}
-        </div>
-      </header>
+      </aside>
 
-      <section className="hero" id="overview">
-        <div className="hero-copy">
-          <span className="eyebrow">Digital Environment Visualization & Intelligent Launcher</span>
-          <h1>D.E.V.I.L Mission Control</h1>
-          <p>
-            A tablet-first command surface for monitoring live systems, launching missions, and keeping
-            the operational picture beautifully sharp.
-          </p>
-        </div>
-        <div className="hero-actions" aria-label="Mission actions">
-          <button type="button">Launch Protocol</button>
-          <button type="button" className="ghost">
-            Run Diagnostics
-          </button>
-        </div>
-      </section>
+      <section className="mission-surface" id="overview">
+        <header className="command-header glass-card">
+          <div>
+            <span className="eyebrow">Digital Environment Visualization & Intelligent Launcher</span>
+            <h1>D.E.V.I.L Mission Control</h1>
+          </div>
+          <div className="header-meta">
+            <span>{timestamp}</span>
+            <button type="button">Command Mode</button>
+          </div>
+        </header>
 
-      <section className="signal-grid" aria-label="System signals">
-        {signals.map((signal) => (
-          <article className={`signal-card ${signal.status}`} key={signal.label}>
-            <span>{signal.label}</span>
-            <strong>{signal.value}</strong>
-            <small>{statusText(signal.status)}</small>
-          </article>
-        ))}
-      </section>
+        <section className="gauge-grid" aria-label="Mission gauges">
+          {gauges.map((gauge) => (
+            <GaugeCard gauge={gauge} key={gauge.label} />
+          ))}
+        </section>
 
-      <section className="dashboard">
-        <OrbitalMap />
-        <div className="stack">
-          <TelemetryGraph />
-          <section className="panel missions-panel" aria-label="Active missions">
-            <div className="panel-heading">
-              <div>
-                <span className="eyebrow">Operations</span>
-                <h2>Active Missions</h2>
-              </div>
-              <span className="mission-count">03</span>
-            </div>
-            <div className="mission-list">
-              {missions.map((mission) => (
-                <MissionCard mission={mission} key={mission.name} />
-              ))}
-            </div>
-          </section>
-        </div>
+        <section className="dashboard-grid">
+          <WeatherPanel />
+          <CalendarPanel />
+          <PhotographyHub />
+          <NotesPanel />
+          <TodoPanel />
+          <MusicPlayer />
+          <QuickLinks />
+        </section>
       </section>
     </main>
   );
