@@ -1,5 +1,7 @@
 # D.E.V.I.L Mission Control
 
+[![Deploy to GitHub Pages](https://github.com/dinmani25-cmd/tablet-dashbord/actions/workflows/pages.yml/badge.svg)](https://github.com/dinmani25-cmd/tablet-dashbord/actions/workflows/pages.yml)
+
 D.E.V.I.L Mission Control is a production-ready React, TypeScript, and Vite progressive web app for a futuristic tablet dashboard. D.E.V.I.L stands for **Digital Environment Visualization & Intelligent Launcher**.
 
 ![D.E.V.I.L Mission Control dashboard](docs/screenshot-dashboard.svg)
